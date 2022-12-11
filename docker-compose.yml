@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  rails:
+    container_name: sleyt_app
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/var/app
+    stdin_open: true
+    tty: true
+    entrypoint: entrypoint.sh
+    command: ['rails','s','-p','3000','-b','0.0.0.0']
+    environment:
+      RAILS_ENV: development
+
+volumes:
+  sleyt-volume:
