@@ -31,7 +31,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Devise for authentication
-gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'devise', '~> 4.9'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
