@@ -41,3 +41,4 @@ EXPOSE $RAILS_PORT
 
 #ENTRYPOINT ["docker/entrypoint.sh"]
 ENTRYPOINT [ "bundle", "exec" ]
+
