@@ -36,4 +36,4 @@
 
 # Ignore idea files
 
-.idea/dataSources.xml
+/.idea/
