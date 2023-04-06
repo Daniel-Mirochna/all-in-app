@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   rails:
-    container_name: sleyt_app
+    container_name: all_in_app
     build:
       context: .
     ports:
@@ -17,4 +17,4 @@ services:
       RAILS_ENV: development
 
 volumes:
-  sleyt-volume:
+  all-in-app-volume:
