@@ -42,3 +42,15 @@ a{
     color: #FFFFFF;
     text-decoration: underline;
 }
+
+button {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-align: inherit;
+    text-decoration: underline;
+}
