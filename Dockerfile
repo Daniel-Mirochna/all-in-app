@@ -1,7 +1,7 @@
 FROM ruby:3.2.2-alpine3.17
 
 ENV APP_PATH /var/app
-ENV BUNDLE_VERSION 2.4
+ENV BUNDLE_VERSION 2.4.10
 ENV BUNDLE_PATH /usr/local/bundle/gems
 ENV TMP_PATH /tmp/
 ENV RAILS_LOG_TO_STDOUT true
