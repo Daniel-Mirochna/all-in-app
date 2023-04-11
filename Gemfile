@@ -48,6 +48,9 @@ gem "tzinfo-data"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Tailwind CSS library
+gem 'tailwindcss-rails', '~> 2.0'
+
 # Use Sass to process CSS
 gem "sassc-rails"
 

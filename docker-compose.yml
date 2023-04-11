@@ -12,7 +12,7 @@ services:
     stdin_open: true
     tty: true
     entrypoint: entrypoint.sh
-    command: ['rails','s','-p','3000','-b','0.0.0.0']
+    command: ['./bin/dev'] #optionally ['rails','s','-p','3000','-b','0.0.0.0']
     environment:
       RAILS_ENV: development
 

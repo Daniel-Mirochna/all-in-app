@@ -39,3 +39,6 @@
 
 # Ignore db/schema.rb
 /db/schema.rb
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
