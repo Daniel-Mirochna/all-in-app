@@ -1,26 +1,35 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="mx-auto w-fit py-4 px-8 md:py-8 md:px-16 bg-slate-400/10" style="background: linear-gradient(to right bottom, #94a3b81a, #94a3b82a);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);">
+    <h2 class="text-3xl">Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field mt-3">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 bg-slate-950" %>
+      </div>
+
+      <div class="field mt-3">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 bg-slate-950" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field mt-3">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions my-5">
+        <%= f.submit "Log in", class: "rounded-full py-3 px-6 bg-purple-700 hover:bg-purple-900 hover:cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <%= render "users/shared/links" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
