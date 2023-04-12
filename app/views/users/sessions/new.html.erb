@@ -1,20 +1,16 @@
 <div class="container">
-  <div class="mx-auto w-fit py-4 px-8 md:py-8 md:px-16 bg-slate-400/10" style="background: linear-gradient(to right bottom, #94a3b81a, #94a3b82a);
-    border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);">
+  <div class="mx-auto w-fit py-4 px-8 md:py-8 md:px-16 rounded-xl glassmorphism">
     <h2 class="text-3xl">Log in</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mt-3">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 bg-slate-950" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 bg-slate-950 rounded" %>
       </div>
 
       <div class="field mt-3">
         <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 bg-slate-950" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 bg-slate-950 rounded" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
@@ -25,7 +21,7 @@
       <% end %>
 
       <div class="actions my-5">
-        <%= f.submit "Log in", class: "rounded-full py-3 px-6 bg-purple-700 hover:bg-purple-800 hover:cursor-pointer" %>
+        <%= f.submit "Log in", class: "rounded-full py-2 px-4 bg-purple-700 hover:bg-purple-800 hover:cursor-pointer" %>
       </div>
     <% end %>
 
