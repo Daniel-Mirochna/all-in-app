@@ -1,11 +1,14 @@
-Hello
-<i>Hello</i>
-
-<% if user_signed_in? %>
-  <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path %>
-  <%= link_to "Log in", new_user_session_path %>
-<% end %>
-<%= link_to "Home", root_path %>
-<i class="fa-solid fa-user"></i>
+<div class="container grid grid-cols-2 gap-20 place-content-center">
+  <div class="h-64 w-80 py-4 px-8 md:py-8 md:px-16 rounded-xl flex flex-wrap content-center glassmorphism">
+    <h2 class="text-2xl text-center">File hosting</h2>
+  </div>
+  <div class="h-64 w-80 py-4 px-8 md:py-8 md:px-16 rounded-xl flex flex-wrap content-center glassmorphism">
+    <h2 class="text-2xl text-center">Transactions history</h2>
+  </div>
+  <div class="h-64 w-80 py-4 px-8 md:py-8 md:px-16 rounded-xl flex flex-wrap content-center glassmorphism">
+    <h2 class="text-2xl text-center">Notes</h2>
+  </div>
+  <div class="h-64 w-80 py-4 px-8 md:py-8 md:px-16 rounded-xl flex flex-wrap content-center glassmorphism">
+    <h2 class="text-2xl text-center"><i class="fa-solid fa-ellipsis fa-2x"></i></h2>
+  </div>
+</div>
