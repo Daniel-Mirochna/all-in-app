@@ -9,10 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // fontFamily: {
-      //   sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      // },
-    },
+      borderRadius: {
+        'xl': '20px'
+      }
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
