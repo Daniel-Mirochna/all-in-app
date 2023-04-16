@@ -34,8 +34,7 @@ sassc \
 RUN gem install bundler --version "$BUNDLE_VERSION" \
 && rm -rf $GEM_HOME/cache/*
 
-RUN gem install rails
-RUN gem install foreman
+RUN gem install rails foreman rspec-rails
 
 # navigate to app directory
 WORKDIR $APP_PATH
