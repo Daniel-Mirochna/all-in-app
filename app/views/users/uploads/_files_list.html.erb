@@ -1,0 +1,10 @@
+<div class="container grow">
+  <div class="mx-auto w-full py-4 px-8 md:py-8 md:px-16 rounded-xl glassmorphism">
+    <h2 class="text-3xl">Your files</h2>
+    <%= user.files.attached? %>
+    <%= user.files.any? %>
+    <% user.files.each do |file| %>
+      <%= file %>
+    <% end %>
+  </div>
+</div>

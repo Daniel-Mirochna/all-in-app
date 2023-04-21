@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="mx-auto w-fit py-4 px-8 md:py-8 md:px-16 rounded-xl glassmorphism">
+    <h2 class="text-3xl">Upload files</h2>
+    <%#= form_with(model: user, url: users_uploads_attach_file_path, method: :post, local: true) do |f| %>
+      <div class="field mt-3">
+        <%#= f.label :files %>
+        <%#= f.file_field :files, multiple: true, class: "mt-1 bg-slate-950 rounded"  %>
+      </div>
+    
+      <div class="actions my-5">
+        <%#= f.submit "Upload", class: "rounded-full py-2 px-4 bg-purple-700 hover:bg-purple-800 hover:cursor-pointer" %>
+      </div>
+    <%# end %>
+  </div>
+</div>
