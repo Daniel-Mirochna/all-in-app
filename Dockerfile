@@ -27,6 +27,8 @@ yarn \
 imagemagick \
 tzdata \
 sassc \
+curl-dev \ 
+file \
 && rm -rf /var/cache/apk/* \
 && mkdir -p $APP_PATH
 
