@@ -1,6 +1,6 @@
-<div class="grow flex gap-10 flex-wrap">
+<div class="grow flex gap-10 flex-wrap md:flex-nowrap">
   <div class="">
-    <%= render partial: "new", locals: { user: @user } %>
+    <%= render partial: "form", locals: { user: @user } %>
   </div>
   <div class="grow">
     <%= render partial: "files_list", locals: { user: @user } %>

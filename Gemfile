@@ -57,8 +57,8 @@ gem "sassc-rails"
 # Font awesome
 gem "font-awesome-sass", "~> 6"
 
-# Active Storage for uploading
-gem 'activestorage', '~> 7.0'
+# Carrierwave for files upload
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

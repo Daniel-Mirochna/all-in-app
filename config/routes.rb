@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   namespace :users do
-    resources :uploads, only: [:new, :create, :destroy]
+    resources :uploads, only: [:index, :update, :destroy]
   end
 end

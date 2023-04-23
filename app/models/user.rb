@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many_attached :files
+  mount_uploaders :user_files, UserFilesUploader
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
