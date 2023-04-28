@@ -1,0 +1,9 @@
+<%= turbo_stream.update('users_uploads_files_list') do %>
+  <% @user.user_files.each_with_index do |file, index| %>
+    <%= render partial: "file", locals: { file: file, index: index } %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update('user--uploads-form-wrapper') do %>
+  <%= render partial: "form", locals: { user: @user } %>
+<% end %>

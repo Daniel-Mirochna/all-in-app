@@ -11,7 +11,11 @@ module.exports = {
     extend: {
       borderRadius: {
         'xl': '20px'
-      }
+      },
+      aspectRatio: {
+        '4/3': '4 / 3',
+        '3/4': '3 / 4',
+      },
     }
   },
   plugins: [

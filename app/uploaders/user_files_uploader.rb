@@ -1,7 +1,7 @@
 class UserFilesUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -29,9 +29,9 @@ class UserFilesUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
+  version :thumb do
+    process resize_to_fill: [150, 150]
+  end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -44,4 +44,23 @@ class UserFilesUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  
+  def filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  def secure_token
+    media_original_filenames_var = :"@#{mounted_as}_original_filenames"
+
+    unless model.instance_variable_get(media_original_filenames_var)
+      model.instance_variable_set(media_original_filenames_var, {})
+    end
+
+    unless model.instance_variable_get(media_original_filenames_var).map{|k,v| k }.include? original_filename.to_sym
+      new_value = model.instance_variable_get(media_original_filenames_var).merge({"#{original_filename}": SecureRandom.uuid})
+      model.instance_variable_set(media_original_filenames_var, new_value)
+    end
+
+    model.instance_variable_get(media_original_filenames_var)[original_filename.to_sym]
+  end
 end

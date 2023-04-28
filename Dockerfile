@@ -23,6 +23,7 @@ postgresql-client \
 libxml2-dev \
 libxslt-dev \
 nodejs \
+npm \
 yarn \
 imagemagick \
 tzdata \

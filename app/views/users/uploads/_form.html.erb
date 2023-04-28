@@ -1,19 +1,30 @@
 <div class="container">
   <div class="mx-auto w-fit py-4 px-8 md:py-8 md:px-16 rounded-xl glassmorphism">
     <h2 class="text-3xl">Upload files</h2>
-    <%= form_with(model: user, url: users_upload_path(user), local: true) do |f| %>
+    <%= form_with(model: user, url: users_upload_path(user), data: { controller: "users--uploads", users__uploads_target: "form" }, local: true) do |f| %>
       <div class="field mt-3">
-        <%#= f.label :files %>
-        <%#= f.file_field :files, multiple: true, class: "mt-1 bg-slate-950 rounded"  %>
         <% user.user_files.each do |file| %>
-          <%= hidden_field :user, :user_files, multiple: true, value: file.identifier %>
+          <%= hidden_field :user, :user_files, multiple: true, value: file.identifier, data: { target: "users--uploads.hiddenField" } %>
         <% end %>
-        <%= f.label :user_files %>
-        <%= f.file_field :user_files, multiple: true %>
+        <%= f.label :user_files, id: "myCustomFileInput", hidden: true %>
+        <%= f.file_field :user_files, multiple: true, class: "mt-1 bg-slate-950 rounded", hidden: true, data: { users__uploads_target: "filesInput", action: "users--uploads#filesInputOnChange" } %>
+        <%= content_tag(:div, "Drag & drop your files here.<br> You can also click this field to select file manually.".html_safe, 
+          data: {
+            action: "
+              click->users--uploads#dragDropAreaClick 
+              dragover->users--uploads#dragDropAreaDragOver 
+              dragleave->users--uploads#dragDropAreaDragLeave 
+              drop->users--uploads#dragDropAreaDrop
+              ",
+            users__uploads_target: "dragDropArea"
+          },
+          class: "border-dashed border-2 border-sky-500 rounded-lg p-5 text-center cursor-pointer select-none"
+        )%>
+        <%= content_tag(:div, "Files to be uploaded: 0", data: {users__uploads_target: "filesList"}, class: "my-5" )%>
       </div>
     
       <div class="actions my-5">
-        <%= f.submit "Upload", class: "rounded-full py-2 px-4 bg-purple-700 hover:bg-purple-800 hover:cursor-pointer" %>
+        <%= f.submit "Upload", data: { action: "users--uploads#beforeUpload" }, class: "rounded-full py-2 px-4 bg-purple-700 hover:bg-purple-800 hover:cursor-pointer" %>
       </div>
     <% end %>
   </div>
