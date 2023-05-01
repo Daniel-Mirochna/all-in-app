@@ -60,6 +60,9 @@ gem "font-awesome-sass", "~> 6"
 # Carrierwave for files upload
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 
+# Store session data in db to avoid ActionDispatch::Cookies::CookieOverflow error
+gem 'activerecord-session_store'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
