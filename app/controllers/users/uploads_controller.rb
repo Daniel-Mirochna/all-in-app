@@ -8,7 +8,7 @@ module Users
       if @user.update(uploads_params)
         render partial: "update"
       else
-        flash[:error] = "Failed uploading picture"
+        flash[:error] = @user.errors.full_messages.first
         redirect_back_or_to users_uploads_path
       end
     end

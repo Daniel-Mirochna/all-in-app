@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-const MAX_FILE_SIZE_MB = 5 // Maximum file size in MB
+const MAX_FILE_SIZE_MB = 10 // Maximum file size in MB
 const MAX_FILE_COUNT = 10 // Maximum number of files
 
 // Controller handling drag and drop files form
@@ -30,47 +30,59 @@ export default class extends Controller {
     this.filesInput.click()
   };
 
-  //  Handling file drag on the area
+  // Handling file drag over the area
   dragDropAreaDragOver(e) {
     e.preventDefault()
     this.dragDropArea.classList.add('bg-sky-400/10')
   }
 
+  // Handling file drag out of the area
   dragDropAreaDragLeave(e) {
     e.preventDefault()
     this.dragDropArea.classList.remove('bg-sky-400/10')
   }
 
+  // Handling file drop on the area
   dragDropAreaDrop(e) {
     e.preventDefault()
     this.dragDropArea.classList.remove('bg-sky-400/10')
     const files = e.dataTransfer.files
-    // Checking file size and number of files limitations
+    if (this.isFilesValid(files)){
+      this.filesInput.files = files
+      this.filesInputOnChange()
+    }
+  }
+
+  // Checking file size and number of files limitations
+  isFilesValid(files) {
+    if (files.length <= 0) {
+      alert(`Please attach minimum one file.`)
+      return false
+    }
     if (files.length > MAX_FILE_COUNT) {
       alert(`You can attach up to ${MAX_FILE_COUNT} files.`)
-      return
+      return false
     }
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
         alert(`File size of "${file.name}" exceeds the limit of ${MAX_FILE_SIZE_MB} MB.`)
-        return
+        return false
       }
     }
-    this.filesInput.files = files
-    this.filesInputOnChange()
+    return true
   }
-  
+
+  // Show how many files will be uploaded
   filesInputOnChange() {
     this.filesList.textContent = `Files to be uploaded: ${this.filesInput.files.length}`
   }
 
-  // Check if files input is not empty
+  // Last validation just before upload
   beforeUpload(e) {
-    if (this.filesInput.files.length <= 0) {
+    if (!this.isFilesValid(this.filesInput.files)) {
       e.preventDefault()
-      alert(`Please attach minimum one file.`)
-      return
+      return false
     }
   }
 }
