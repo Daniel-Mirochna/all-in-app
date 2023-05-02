@@ -14,10 +14,10 @@
     <%= render partial: "layouts/partials/navbar" %>
     <main class="container mx-auto mt-28 flex">
       <% flash.each do |type, msg| %>
-        <div class="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl py-8 px-16 rounded-lg drop-shadow-[0_4px_15px_rgba(255,255,255,0.15)] <%= type == 'alert' ? 'bg-red-800' : 'bg-purple-800' %>">
-          <i class="fa-solid fa-xmark absolute text-xl top-1 right-1 cursor-pointer" onclick="this.parentElement.outerHTML =''"></i>
-          <%= msg %>
-        </div>
+<!--        <div class="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl py-8 px-16 rounded-lg drop-shadow-[0_4px_15px_rgba(255,255,255,0.15)] <%#= type == 'alert' ? 'bg-red-800' : 'bg-purple-800' %>">-->
+<!--          <i class="fa-solid fa-xmark absolute text-xl top-1 right-1 cursor-pointer" onclick="this.parentElement.outerHTML =''"></i>-->
+<!--        </div>-->
+        <%= render partial: "layouts/partials/alert", locals: {msg: msg, type: type} %>
       <% end %>
       <%= yield %>
     </main>
