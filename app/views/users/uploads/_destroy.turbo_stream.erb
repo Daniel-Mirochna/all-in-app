@@ -1,0 +1,9 @@
+<%= turbo_stream.update('users_uploads_files_list') do %>
+  <% @user.user_files.each_with_index do |file, index| %>
+    <%= render partial: "file", locals: { file: file, index: index } %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update('users--uploads-storage-space-counter-wrapper') do %>
+  <%= render partial: "storage_space_counter" %>
+<% end %>

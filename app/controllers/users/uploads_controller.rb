@@ -15,8 +15,12 @@ module Users
 
     def destroy
       remove_file_at_index(params[:id].to_i)
-      flash[:error] = "Failed deleting picture" unless @user.save
-      redirect_back_or_to users_uploads_path
+      if @user.save
+        render partial: "destroy"
+      else
+        flash[:error] = "Failed deleting picture"
+        redirect_back_or_to users_uploads_path
+      end
     end
 
     private

@@ -1,8 +1,25 @@
 <div class="grow flex gap-10 flex-wrap xl:flex-nowrap">
-  <div class="grow" id="user--uploads-form-wrapper">
-    <%= render partial: "form", locals: { user: @user } %>
+  <div class="grow">
+    <div class="container">
+      <div class="mx-auto w-fit py-4 px-8 md:py-8 md:px-16 rounded-xl glassmorphism">
+        <h2 class="text-3xl">Upload files</h2>
+        <div id="users--uploads-form-wrapper">
+          <%= render partial: "form", locals: { user: @user } %>
+        </div>
+        <div id="users--uploads-storage-space-counter-wrapper">
+          <%= render partial: "storage_space_counter" %>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="grow">
-    <%= render partial: "files_list", locals: { user: @user } %>
+    <div class="container grow">
+      <div class="mx-auto w-full py-4 px-8 md:py-8 md:px-16 rounded-xl glassmorphism">
+        <h2 class="text-3xl">Your files</h2>
+        <turbo-frame id="users_uploads_files_list" class="mt-3 grid grid-cols-2 sm:grid-cols-4 2xl:grid-cols-6 gap-5">
+          <%= render partial: "files_list", locals: { user: @user } %>
+        </turbo-frame>
+      </div>
+    </div>
   </div>
 </div>
