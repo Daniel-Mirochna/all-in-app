@@ -11,4 +11,8 @@ module UserUploadsHelper
   def file_extensions(type = :picture)
     FILE_EXTENSIONS_TYPES[type]
   end
+
+  def print_filename(file)
+    file.file.basename.gsub(/__.*/,"")
+  end
 end
