@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import ModalsController from "./modals_controller"
+application.register("modals", ModalsController)
+
 import Users__UploadsController from "./users/uploads_controller"
 application.register("users--uploads", Users__UploadsController)
