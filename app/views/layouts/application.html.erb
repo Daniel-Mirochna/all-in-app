@@ -19,5 +19,6 @@
     <%= yield %>
   </main>
   <%= render partial: "layouts/partials/popup_modal" %>
+  <%= turbo_frame_tag "modal" %>
 </body>
 </html>
