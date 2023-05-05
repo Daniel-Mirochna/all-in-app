@@ -10,9 +10,9 @@
   <%#= javascript_importmap_tags %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
-<body class="dark">
+<body class="dark flex flex-col min-h-screen">
   <%= render partial: "layouts/partials/navbar" %>
-  <main class="container mx-auto mt-28 flex">
+  <main class="container mx-auto pt-28 pb-12 flex">
     <% flash.each do |type, msg| %>
       <%= render partial: "layouts/partials/alert", locals: {msg: msg, type: type} %>
     <% end %>
@@ -20,5 +20,6 @@
   </main>
   <%= render partial: "layouts/partials/popup_modal" %>
   <%= turbo_frame_tag "modal" %>
+  <%= render partial: "layouts/partials/footer" %>
 </body>
 </html>
