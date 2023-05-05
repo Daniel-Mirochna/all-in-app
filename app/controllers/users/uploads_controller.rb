@@ -4,6 +4,11 @@ module Users
 
     def index; end
 
+    def show
+      @file = @user.user_files[params[:id].to_i]
+      @file_id = params[:id].to_i
+    end
+
     def update
       if @user.update(uploads_params)
         render partial: "update"
