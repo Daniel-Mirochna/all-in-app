@@ -71,6 +71,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 6.0'
   gem 'rubocop'
+  gem 'brakeman', '~> 5.4'
 end
 
 group :development do
