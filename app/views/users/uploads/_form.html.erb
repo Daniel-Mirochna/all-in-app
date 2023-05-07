@@ -1,7 +1,7 @@
 <%= form_with(model: user, url: users_upload_path(user), data: { users__uploads_target: "form" }, local: true) do |f| %>
   <div class="field mt-3">
     <% user.user_files.each do |file| %>
-      <%= hidden_field :user, :user_files, multiple: true, value: file.identifier, data: { target: "users--uploads.hiddenField" } %>
+      <%= hidden_field :user, :user_files, multiple: true, value: file.file.identifier %>
     <% end %>
     <%= f.label :user_files, id: "myCustomFileInput", hidden: true %>
     <%= f.file_field :user_files, multiple: true, class: "mt-1 bg-slate-950 rounded", hidden: true, data: { users__uploads_target: "filesInput", action: "users--uploads#filesInputOnChange" } %>
