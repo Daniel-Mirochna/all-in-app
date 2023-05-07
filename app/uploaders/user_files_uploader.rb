@@ -29,7 +29,7 @@ class UserFilesUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
+  version :thumb, if: :image? do
     process resize_to_fill: [150, 150]
   end
 
@@ -52,6 +52,12 @@ class UserFilesUploader < CarrierWave::Uploader::Base
 
   def filename
     "#{file.basename}__#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  private
+
+  def image?(new_file)
+    new_file.content_type.start_with?('image/')
   end
 
   def secure_token
