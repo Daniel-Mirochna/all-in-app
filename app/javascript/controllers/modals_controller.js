@@ -33,13 +33,15 @@ export default class extends Controller {
     this.cancelTarget.addEventListener("click", () => {modal.hide()} )
     this.closeModalTarget.addEventListener("click", () => {modal.hide()} )
     
-    Turbo.setConfirmMethod((message) => {
+    Turbo.setConfirmMethod((message, element) => {
       targetEl.querySelector("h3").textContent = message
+      let elementId = `fileGridElement_${element.action.split('/').slice(-1)}`
       this.confirm.textContent = "Delete file"
-      
+
       modal.show()
       return new Promise((resolve) => {
         this.confirm.addEventListener("click", () => {
+          document.getElementById(elementId).innerHTML = "<div class='flex justify-center items-center h-full'><div class=\'lds-roller\'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>"
           resolve(true)
         }, { once: true})
       })

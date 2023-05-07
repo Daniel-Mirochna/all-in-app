@@ -1,4 +1,4 @@
-<div class="relative justify-self-center">
+<div class="relative justify-self-center" id="fileGridElement_<%= index %>">
 <% if file_extensions.include? file.file.extension.downcase %>
   <%= link_to users_upload_path(index), data: { turbo_frame: "modal" }, class: "flex flex-col items-center" do %>
     <%= image_tag(file.thumb.url, alt: print_filename(file), class: "rounded-lg aspect-1 object-cover object-center hover:object-scale-down hover:cursor-zoom-in") %>

@@ -5,7 +5,7 @@ const MAX_FILE_COUNT = 10 // Maximum number of files
 
 // Controller handling drag and drop files form
 export default class extends Controller {
-  static targets = ["form", "filesInput", "dragDropArea", "hiddenField", "filesList"]
+  static targets = ["form", "filesInput", "dragDropArea", "filesList"]
 
   connect() {
     console.log("Hello, Uploads Controller!")
