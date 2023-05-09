@@ -12,3 +12,18 @@ To open the container terminal in VS Code:
 1. Open local terminal
 2. Run command `docker ps` and copy the container ID
 3. Run command `docker exec -it <container ID> sh`
+
+# TODO
+
+0. General tasks
+- [ ] Custom error pages
+- [ ] Close alert at unauthorized login status
+
+2. User uploads
+- [ ] More file icons
+
+3. Crypto Dashboard
+- [ ] More specific tests
+- [ ] Filtering results
+- [ ] Paginate results
+- [ ] Modal with specific crypto data on click at the table row
