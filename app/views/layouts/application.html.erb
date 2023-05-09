@@ -10,7 +10,7 @@
   <%#= javascript_importmap_tags %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
-<body class="dark flex flex-col min-h-screen">
+<body class="dark flex flex-col min-h-screen overflow-x-hidden">
   <%= render partial: "layouts/partials/navbar" %>
   <main class="container mx-auto pt-28 pb-12 flex">
     <% flash.each do |type, msg| %>
