@@ -1,59 +1,60 @@
-<div class='overflow-x-auto w-full flex justify-center'>
-  <div class="relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase glassmorphism dark:text-gray-400">
+<div class='w-full md:flex md:justify-center'>
+  <div class="relative">
+    <span class="py-3 float-right">Powered by <a href="https://www.coingecko.com/" target="_blank" class="font-medium dark:text-purple-400 hover:underline">CoinGecko</a></span>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-slate-200 glassmorphism">
+      <thead class="text-xs text-gray-700 border-b border-purple-800 uppercase dark:text-slate-200">
         <tr>
-            <th scope="col" class="px-3 py-2 md:px-6 md:py-3 text-center">
-              Rank
-            </th>
-            <th scope="col" class="px-3 py-2 md:px-6 md:py-3 text-center">
-              Name
-            </th>
-            <th scope="col" class="px-3 py-2 md:px-6 md:py-3 text-center md:text-right">
-              Price
-            </th>
-            <th scope="col" class="px-3 py-2 md:px-6 md:py-3 text-center md:text-right">
-              24h % change
-            </th>
-            <th scope="col" class="px-3 py-2 md:px-6 md:py-3 text-center md:text-right">
-              Market Cap
-            </th>
-            <th scope="col" class="px-3 py-2 md:px-6 md:py-3 text-center md:text-right">
-              Mkt Cap/FDV
-            </th>
-            <th scope="col" class="px-3 py-2 md:px-6 md:py-3 text-center md:text-right">
-              Updated
-            </th>
+          <th scope="col" class="px-1 py-2 text-center md:table-cell md:px-6 md:py-3">
+            Rank
+          </th>
+          <th scope="col" class="px-2 py-2 text-center md:table-cell md:px-6 md:py-3">
+            Name
+          </th>
+          <th scope="col" class="px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+            Price USD
+          </th>
+          <th scope="col" class="px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+            24h % change
+          </th>
+          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+            Market Cap
+          </th>
+          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+            Mkt Cap/FDV
+          </th>
+          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+            Updated
+          </th>
         </tr>
       </thead>
       <tbody>
         <% @data.each do |coin| %>
-          <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 glassmorphism">
-              <th scope="row" class="px-3 py-2 md:px-6 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                <%= coin["market_cap_rank"] %>
-              </th>
-              <td class="px-3 py-2 md:px-6 md:py-4">
-                <div class="flex items-center gap-1">
-                  <%= image_tag(coin["image"], class: "w-5 h-5 inline", alt: coin["symbol"], loading: :lazy) %>
-                  <strong class="pl-1"><%= coin["symbol"].upcase %></strong>
-                  <span class="hidden md:inline"><%= coin["name"] %></span>
-                </div>
-              </td>
-              <td class="px-3 py-2 md:px-6 md:py-4 text-right">
-                <%= number_with_precision(sprintf("%.8f", coin["current_price"]), precision: 10, strip_insignificant_zeros: true, delimiter: " ") %>&nbsp;$
-              </td>
-              <td class="px-3 py-2 md:px-6 md:py-4 text-right">
-                <%= coin["price_change_percentage_24h"].round(2) %>&nbsp;%
-              </td>
-              <td class="px-3 py-2 md:px-6 md:py-4 text-right">
-                <%= number_with_precision(coin["market_cap"], precision: 0, delimiter: " ") %>&nbsp;$
-              </td>
-              <td class="px-3 py-2 md:px-6 md:py-4 text-right">
-                <%= number_with_precision(coin["market_cap"].to_f/coin["fully_diluted_valuation"].to_f, precision: 2, strip_insignificant_zeros: true) unless coin["fully_diluted_valuation"].nil? %>
-              </td>
-              <td class="px-3 py-2 md:px-6 md:py-4 text-right">
-                <%= coin["last_updated"].to_datetime.in_time_zone.today? ? coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M") : coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M %d.%m.%Y") %>
-              </td>
+          <tr class="hover:bg-gray-50 dark:hover:bg-purple-800">
+            <th scope="row" class="px-1 py-2 md:px-6 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+              <%= coin["market_cap_rank"] %>
+            </th>
+            <td class="px-2 py-2 md:px-6 md:py-4">
+              <div class="flex items-center gap-1 flex-col md:flex-row">
+                <%= image_tag(coin["image"], class: "w-5 h-5", alt: coin["symbol"], loading: :lazy) %>
+                <strong class="pl-1"><%= coin["symbol"].upcase %></strong>
+                <span class="hidden md:inline"><%= coin["name"] %></span>
+              </div>
+            </td>
+            <td class="px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
+              <%= number_with_precision(sprintf("%.8f", coin["current_price"]), precision: 10, strip_insignificant_zeros: true, delimiter: " ") %>&nbsp;<span class="hidden md:inline">$</span>
+            </td>
+            <td class="px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
+              <%= coin["price_change_percentage_24h"].round(2) %>&nbsp;%
+            </td>
+            <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
+              <%= number_with_precision(coin["market_cap"], precision: 0, delimiter: " ") %>&nbsp;$
+            </td>
+            <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
+              <%= number_with_precision(coin["market_cap"].to_f/coin["fully_diluted_valuation"].to_f, precision: 2, strip_insignificant_zeros: true) unless coin["fully_diluted_valuation"].nil? %>
+            </td>
+            <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
+              <%= coin["last_updated"].to_datetime.in_time_zone.today? ? coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M") : coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M %d.%m.%Y") %>
+            </td>
           </tr>
         <% end %>
       </tbody>
