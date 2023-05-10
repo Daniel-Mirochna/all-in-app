@@ -26,7 +26,11 @@
         <%= link_to "Uploads", users_uploads_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ 'md:dark:text-purple-400' if request.path == users_uploads_path }" %>
       </li>
       <li>
+<<<<<<< HEAD
         <%= link_to "Test", root_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400" %>
+=======
+        <%= link_to "Crypto Dashboard", crypto_dashboard_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400" %>
+>>>>>>> c2e65a1 (Initial branch commit with CryptoDashboard boilerplate and simple api req)
       </li>
       <% if user_signed_in? %>
       <li>

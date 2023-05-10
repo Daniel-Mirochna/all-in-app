@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   namespace :users do
     resources :uploads, only: [:index, :show, :update, :destroy]
   end
+
+  get "crypto-dashboard", to: "crypto_dashboards#index"
 end

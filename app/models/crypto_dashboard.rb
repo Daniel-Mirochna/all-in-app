@@ -1,0 +1,2 @@
+class CryptoDashboard < ApplicationRecord
+end
