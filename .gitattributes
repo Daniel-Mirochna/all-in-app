@@ -6,4 +6,6 @@ db/schema.rb linguist-generated
 # Mark any vendored files as having been vendored.
 vendor/* linguist-vendored
 
+app/assets/images/* binary
+app/assets/fonts/* binary
 * text eol=lf
