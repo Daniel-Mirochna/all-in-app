@@ -14,7 +14,7 @@
   <%= render partial: "layouts/partials/navbar" %>
   <main class="container mx-auto pt-28 pb-12 flex">
     <% flash.each do |type, msg| %>
-      <%= render partial: "layouts/partials/alert", locals: {msg: msg, type: type} %>
+      <%= render partial: "layouts/partials/alert", locals: {type:, msg:} %>
     <% end %>
     <%= yield %>
   </main>

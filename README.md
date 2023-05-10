@@ -17,7 +17,7 @@ To open the container terminal in VS Code:
 
 0. General tasks
 - [ ] Custom error pages
-- [ ] Close alert at unauthorized login status
+- [x] Close alert at unauthorized login status
 
 2. User uploads
 - [ ] More file icons
