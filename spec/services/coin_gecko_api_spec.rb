@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe CoinGeckoApi do
+RSpec.describe CoinGeckoApiService do
   describe ".ping" do
-    let(:response) { CoinGeckoApi.new.ping }
+    let(:response) { CoinGeckoApiService.ping }
 
     it "returns a successful response" do
       expect(response.code).to eq(200)
@@ -10,7 +10,7 @@ RSpec.describe CoinGeckoApi do
   end
 
   describe ".coins_list" do
-    let(:response) { CoinGeckoApi.new.coins_list }
+    let(:response) { CoinGeckoApiService.coins_list }
     let(:response_body_mockup) { JSON.parse(File.read("spec/support/fixtures/coin_gecko_api/coins_list.json")) }
 
     it "returns a successful response" do
@@ -27,8 +27,8 @@ RSpec.describe CoinGeckoApi do
   end
 
   describe ".coin_info" do
-    # let(:response) { CoinGeckoApi.new.coin_info("bitcoin") }
-    let(:coin_gecko_api) { CoinGeckoApi.new }
+    # let(:response) { CoinGeckoApiService.coin_info("bitcoin") }
+    let(:coin_gecko_api) { CoinGeckoApiService }
 
     it "accepts the coin_id parameter" do
       coin_id = "bitcoin"
