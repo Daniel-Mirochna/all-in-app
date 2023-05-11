@@ -1,2 +1,0 @@
-class CryptoDashboard < ApplicationRecord
-end

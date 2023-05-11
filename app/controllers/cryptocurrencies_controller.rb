@@ -1,4 +1,4 @@
-class CryptoDashboardsController < ApplicationController
+class CryptocurrenciesController < ApplicationController
   def index
     @data = CoinGeckoApiService.coins_list
   end

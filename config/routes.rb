@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     resources :uploads, only: [:index, :show, :update, :destroy]
   end
 
-  resources :crypto_dashboards, only: [:index, :show], param: :coin_id
+  resources :cryptocurrencies, only: [:index, :show], param: :coin_id
 end
