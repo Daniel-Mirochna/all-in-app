@@ -41,13 +41,13 @@
               <% end %>
             </td>
             <td class="px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
-              <%= number_with_precision(sprintf("%.8f", coin["current_price"]), precision: 10, strip_insignificant_zeros: true, delimiter: " ") %>&nbsp;<span class="hidden md:inline">$</span>
+              <%= formatted_price(coin["current_price"]) %>&nbsp;<span class="hidden md:inline">$</span>
             </td>
             <td class="px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
               <%= coin["price_change_percentage_24h"].round(2) %>&nbsp;%
             </td>
             <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
-              <%= number_with_precision(coin["market_cap"], precision: 0, delimiter: " ") %>&nbsp;$
+              <%= formatted_price(coin["market_cap"]) %>&nbsp;$
             </td>
             <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
               <%= number_with_precision(coin["market_cap"].to_f/coin["fully_diluted_valuation"].to_f, precision: 2, strip_insignificant_zeros: true) unless coin["fully_diluted_valuation"].nil? %>
