@@ -1,9 +1,9 @@
 class CryptoDashboardsController < ApplicationController
   def index
-    @data = CoinGeckoApi.coins_list
+    @data = CoinGeckoApi.new.coins_list
   end
 
   def show
-    @data = CoinGeckoApi.coin_info(params[:coin_id])
+    @data = CoinGeckoApi.new.coin_info(params[:coin_id])
   end
 end
