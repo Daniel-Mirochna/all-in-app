@@ -1,0 +1,80 @@
+<%= turbo_frame_tag "modal" do %>
+  <!-- Main modal -->
+  <div id="defaultModal" data-modal-target="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex justify-center items-center">
+    <div class="relative w-full max-w-2xl max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-slate-800">
+        <!-- Modal header -->
+        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+          <h3 class="text-xl text-slate-900 dark:text-white">
+            <%= image_tag(@data["image"]["small"], alt: "Coin logo", class: "inline w-10 h-10") %> <%= @data["name"] %>&nbsp;<span class="text-slate-400"><%= @data["symbol"].upcase %></span>
+          </h3>
+          <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="p-6 pt-2 space-y-6">
+          <p class="text-sm mb-5 text-slate-500 dark:text-slate-400">
+            <% @data["categories"].each do |category| %>
+              <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium mr-2 my-1 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300"><%= category %></span>
+            <% end %>
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="">
+              <h2 class="text-2xl mb-4 text-slate-500 dark:text-slate-200">
+                <%= number_with_precision(sprintf("%.8f", @data["market_data"]["current_price"]["usd"]), precision: 10, strip_insignificant_zeros: true, delimiter: " ") %>&nbsp;$<br>
+              </h2>
+              <div class="mb-5">
+                <h3 class="inline-block mb-2 border-b-2 border-purple-800">Price changes</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">
+                  24h high <%= number_with_precision(sprintf("%.8f", @data["market_data"]["high_24h"]["usd"]), precision: 10, strip_insignificant_zeros: true, delimiter: " ") %>&nbsp;$<br>
+                  24h low <%= number_with_precision(sprintf("%.8f", @data["market_data"]["low_24h"]["usd"]), precision: 10, strip_insignificant_zeros: true, delimiter: " ") %>&nbsp;$<br>
+                  Price change % 1 day <%= @data["market_data"]["price_change_percentage_24h"].round(2) %>%<br>
+                  Price change % 7 days <%= @data["market_data"]["price_change_percentage_7d"].round(2) %>%<br>
+                  Price change % 1 month <%= @data["market_data"]["price_change_percentage_30d"].round(2) %>%<br>
+                </p>
+              </div>
+              <div class="mb-5">
+                <h3 class="inline-block mb-2 border-b-2 border-purple-800">ATH</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">
+                  ATH Price <%= number_with_precision(sprintf("%.8f", @data["market_data"]["ath"]["usd"]), precision: 10, strip_insignificant_zeros: true, delimiter: " ") %>&nbsp;$<br>
+                  Percentage from ATH <%= @data["market_data"]["ath_change_percentage"]["usd"].round(2) %>%<br>
+                  ATH on <%= @data["market_data"]["ath_date"]["usd"].to_datetime.in_time_zone.strftime("%d.%m.%Y") %><br>
+                </p>
+              </div>
+              <div class="mb-5">
+                <h3 class="inline-block mb-2 border-b-2 border-purple-800">Other numbers</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">
+                  Market cap <%= number_with_precision(@data["market_data"]["market_cap"]["usd"], precision: 0, delimiter: " ") %>&nbsp;$<br>
+                  FDV <%= number_with_precision(@data["market_data"]["fully_diluted_valuation"]["usd"], precision: 0, delimiter: " ") %>&nbsp;$<br>
+                  24h volume <%= number_with_precision(@data["market_data"]["total_volume"]["usd"], precision: 0, delimiter: " ") %>&nbsp;$<br>
+                  Total supply <%= number_with_precision(@data["market_data"]["total_supply"], precision: 0, delimiter: " ") %><br>
+                  Max supply <%= number_with_precision(@data["market_data"]["max_supply"], precision: 0, delimiter: " ") %><br>
+                  Circulating supply <%= number_with_precision(@data["market_data"]["circulating_supply"], precision: 0, delimiter: " ") %><br>
+                </p>
+              </div>
+              <% if @data["genesis_date"] %>
+                Genesis date <%= @data["genesis_date"].to_datetime.in_time_zone.strftime("%d.%m.%Y") %><br>
+              <% end %>
+            </div>
+            <div class="">
+              <div class="mb-5">
+                <h3 class="inline-block mb-2 border-b-2 border-purple-800">Links</h3>
+                <p class="text-base text-slate-500 dark:text-slate-400">
+                  Homepage: <%= @data["links"]["homepage"].first %> <br>
+                  Forum: <%= @data["links"]["official_forum_url"].first %> <br>
+                  Explorers: <% @data["links"]["blockchain_site"].each do |link| %>
+                    <%= link %> <br>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal footer -->
+      </div>
+    </div>
+  </div>
+<% end %>
