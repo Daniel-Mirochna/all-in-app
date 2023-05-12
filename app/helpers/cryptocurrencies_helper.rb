@@ -1,6 +1,9 @@
 module CryptocurrenciesHelper
   def formatted_price(number)
-    "$&thinsp;#{number_with_precision(format('%.8f', number), precision: 10, strip_insignificant_zeros: true, delimiter: ' ')}".html_safe
+    currency = cookies[:currency]
+    "#{Cryptocurrency::CURRENCY_SYMBOLS[currency]}&thinsp;#{
+      number_with_precision(format('%.8f', number), precision: 10, strip_insignificant_zeros: true, delimiter: ' ')
+    }".html_safe
   end
 
   def formatted_number_precision_two(number)

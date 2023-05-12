@@ -15,7 +15,7 @@
               <%= @data["name"] %>&thinsp;<span class="text-slate-400"><%= @data["symbol"].upcase %></span>
             </div>
             <div class="text-3xl">
-              <%= formatted_price(@data["market_data"]["current_price"]["usd"]) %>
+              <%= formatted_price(@data["market_data"]["current_price"][cookies[:currency]]) %>
             </div>
           </h3>
           <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
@@ -35,8 +35,8 @@
               <div class="mb-5">
                 <h3 class="inline-block mb-2 border-b-2 border-purple-800">Price changes</h3>
                 <p class="text-base text-slate-500 dark:text-slate-400">
-                  <%= render partial: "single_data", locals: { name: "24h high", value: formatted_price(@data["market_data"]["high_24h"]["usd"]) } %>
-                  <%= render partial: "single_data", locals: { name: "24h low", value: formatted_price(@data["market_data"]["low_24h"]["usd"]) } %>
+                  <%= render partial: "single_data", locals: { name: "24h high", value: formatted_price(@data["market_data"]["high_24h"][cookies[:currency]]) } %>
+                  <%= render partial: "single_data", locals: { name: "24h low", value: formatted_price(@data["market_data"]["low_24h"][cookies[:currency]]) } %>
                   <%= render partial: "single_data", locals: { name: "Price change 1 day", value: "#{presenter.price_change_percentage(@data["market_data"]["price_change_percentage_24h"])}" } %>
                   <%= render partial: "single_data", locals: { name: "Price change 7 days", value: "#{presenter.price_change_percentage(@data["market_data"]["price_change_percentage_7d"])}" } %>
                   <%= render partial: "single_data", locals: { name: "Price change 1 month", value: "#{presenter.price_change_percentage(@data["market_data"]["price_change_percentage_30d"])}" } %>
@@ -45,17 +45,17 @@
               <div class="mb-5">
                 <h3 class="inline-block mb-2 border-b-2 border-purple-800">ATH</h3>
                 <p class="text-base text-slate-500 dark:text-slate-400">
-                  <%= render partial: "single_data", locals: { name: "ATH Price", value: formatted_price(@data["market_data"]["ath"]["usd"]) } %>
-                  <%= render partial: "single_data", locals: { name: "Percentage from ATH", value: "#{presenter.price_change_percentage(@data["market_data"]["ath_change_percentage"]["usd"])}" } %>
-                  <%= render partial: "single_data", locals: { name: "ATH on", value: "#{@data["market_data"]["ath_date"]["usd"].to_datetime.in_time_zone.strftime("%d.%m.%Y")}" } %>
+                  <%= render partial: "single_data", locals: { name: "ATH Price", value: formatted_price(@data["market_data"]["ath"][cookies[:currency]]) } %>
+                  <%= render partial: "single_data", locals: { name: "Percentage from ATH", value: "#{presenter.price_change_percentage(@data["market_data"]["ath_change_percentage"][cookies[:currency]])}" } %>
+                  <%= render partial: "single_data", locals: { name: "ATH on", value: "#{@data["market_data"]["ath_date"][cookies[:currency]].to_datetime.in_time_zone.strftime("%d.%m.%Y")}" } %>
                 </p>
               </div>
               <div class="mb-5">
                 <h3 class="inline-block mb-2 border-b-2 border-purple-800">Other numbers</h3>
                 <p class="text-base text-slate-500 dark:text-slate-400">
-                  <%= render partial: "single_data", locals: { name: "Market cap", value: "#{number_with_precision(@data['market_data']['market_cap']['usd'], precision: 0, delimiter: ' ')}&thinsp;$" } %>
-                  <%= render partial: "single_data", locals: { name: "FDV", value: "#{number_with_precision(@data["market_data"]["fully_diluted_valuation"]["usd"], precision: 0, delimiter: " ")}&thinsp;$" } %>
-                  <%= render partial: "single_data", locals: { name: "24h volume", value: "#{number_with_precision(@data["market_data"]["total_volume"]["usd"], precision: 0, delimiter: " ")}&thinsp;$" } %>
+                  <%= render partial: "single_data", locals: { name: "Market cap", value: formatted_price(@data['market_data']['market_cap'][cookies[:currency]]) } %>
+                  <%= render partial: "single_data", locals: { name: "FDV", value: formatted_price(@data["market_data"]["fully_diluted_valuation"][cookies[:currency]]) } %>
+                  <%= render partial: "single_data", locals: { name: "24h volume", value: formatted_price(@data["market_data"]["total_volume"][cookies[:currency]]) } %>
                   <%= render partial: "single_data", locals: { name: "Total supply", value: number_with_precision(@data["market_data"]["total_supply"], precision: 0, delimiter: " ") } %>
                   <%= render partial: "single_data", locals: { name: "Max supply", value: number_with_precision(@data["market_data"]["max_supply"], precision: 0, delimiter: " ") } %>
                   <%= render partial: "single_data", locals: { name: "Circulating supply", value: number_with_precision(@data["market_data"]["circulating_supply"], precision: 0, delimiter: " ") } %>

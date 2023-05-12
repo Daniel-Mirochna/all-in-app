@@ -4,7 +4,7 @@ class CryptocurrenciesController < ApplicationController
   def index; end
 
   def coins_list
-    @data = CoinGeckoApiService.coins_list
+    @data = CoinGeckoApiService.coins_list(cookies[:currency])
   end
 
   def show
@@ -14,6 +14,8 @@ class CryptocurrenciesController < ApplicationController
   private
 
   def set_currency
-    cookies[:currency] = { value: "usd", expires: Time.now + 3600 * 24 * 180} unless Cryptocurrency::CURRENCY_SYMBOLS.include?(cookies[:currency])
+    return if Cryptocurrency::CURRENCY_SYMBOLS.include?(cookies[:currency])
+
+    cookies[:currency] = { value: "usd", expires: Time.now + (3600 * 24 * 180) }
   end
 end
