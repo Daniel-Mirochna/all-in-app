@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
 
   resources :cryptocurrencies, only: [:index, :show], param: :coin_id
+  get "/coins_list", to: "cryptocurrencies#coins_list" 
 end
