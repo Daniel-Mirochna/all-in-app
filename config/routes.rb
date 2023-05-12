@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   namespace :users do
     resources :uploads, only: [:index, :show, :update, :destroy]
   end
+
+  resources :cryptocurrencies, only: [:index, :show], param: :coin_id
+  get "/coins_list", to: "cryptocurrencies#coins_list" 
 end

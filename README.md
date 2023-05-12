@@ -26,4 +26,4 @@ To open the container terminal in VS Code:
 - [ ] More specific tests
 - [ ] Filtering results
 - [ ] Paginate results
-- [ ] Modal with specific crypto data on click at the table row
+- [x] Modal with specific crypto data on click at the table row

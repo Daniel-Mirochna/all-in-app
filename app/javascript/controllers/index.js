@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CryptocurrenciesController from "./cryptocurrencies_controller"
+application.register("cryptocurrencies", CryptocurrenciesController)
+
 import ModalsController from "./modals_controller"
 application.register("modals", ModalsController)
 
