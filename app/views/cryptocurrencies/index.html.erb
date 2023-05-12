@@ -1,59 +1,60 @@
 <div class='w-full md:flex md:justify-center'>
   <div class="relative">
     <span class="py-3 float-right">Powered by <a href="https://www.coingecko.com/" target="_blank" class="font-medium dark:text-purple-400 hover:underline">CoinGecko</a></span>
-    <table class="w-full text-sm text-left text-gray-500 dark:text-slate-200 glassmorphism">
-      <thead class="text-xs text-gray-700 border-b border-purple-800 uppercase dark:text-slate-200">
+    <table class="w-full text-md text-left text-gray-500 dark:text-slate-200 glassmorphism">
+      <thead class="text-sm text-gray-700 border-b border-purple-800 uppercase dark:text-slate-200">
         <tr>
-          <th scope="col" class="px-1 py-2 text-center md:table-cell md:px-6 md:py-3">
+          <th scope="col" class="px-1 py-2 text-center md:table-cell lg:px-4 md:py-3">
             Rank
           </th>
-          <th scope="col" class="px-2 py-2 text-center md:table-cell md:px-6 md:py-3">
+          <th scope="col" class="px-2 py-2 text-center md:table-cell lg:px-4 md:py-3">
             Name
           </th>
-          <th scope="col" class="px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+          <th scope="col" class="px-2 py-2 text-center md:table-cell lg:px-4 md:py-3 md:text-right">
             Price USD
           </th>
-          <th scope="col" class="px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+          <th scope="col" class="px-2 py-2 text-center md:table-cell lg:px-4 md:py-3 md:text-right">
             24h % change
           </th>
-          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell lg:px-4 md:py-3 md:text-right">
             Market Cap
           </th>
-          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell lg:px-4 md:py-3 md:text-right">
             Mkt Cap/FDV
           </th>
-          <th scope="col" class="hidden px-2 py-2 text-center md:table-cell md:px-6 md:py-3 md:text-right">
+          <th scope="col" class="hidden px-2 py-2 text-center lg:table-cell lg:px-4 md:py-3 md:text-right">
             Updated
           </th>
         </tr>
       </thead>
       <tbody>
         <% @data.each do |coin| %>
+          <% presenter = CryptocurrencyPresenter.new(coin) %>
           <tr class="hover:bg-gray-50 dark:hover:bg-purple-800">
-            <th scope="row" class="px-1 py-2 md:px-6 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+            <th scope="row" class="px-1 py-2 lg:px-4 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
               <%= coin["market_cap_rank"] %>
             </th>
-            <td class="px-2 py-2 md:px-6 md:py-4">
+            <td class="px-2 py-2 lg:px-4 md:py-4">
               <%= link_to cryptocurrency_path(coin_id: coin["id"]), data: { turbo_frame: "modal" }, class: "flex items-center gap-1 flex-col md:flex-row" do %>
                 <%= image_tag(coin["image"], class: "w-5 h-5", alt: coin["symbol"], loading: :lazy) %>
                 <strong class="pl-1"><%= coin["symbol"].upcase %></strong>
                 <span class="hidden md:inline"><%= coin["name"] %></span>
               <% end %>
             </td>
-            <td class="px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
-              <%= formatted_price(coin["current_price"]) %>&nbsp;<span class="hidden md:inline">$</span>
+            <td class="px-2 py-2 text-center md:text-right md:table-cell lg:px-4 md:py-4">
+              <%= formatted_price(coin["current_price"]) %>
             </td>
-            <td class="px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
-              <%= coin["price_change_percentage_24h"].round(2) %>&nbsp;%
+            <td class="px-2 py-2 text-center md:text-right md:table-cell lg:px-4 md:py-4">
+              <%= presenter.price_change_percentage(coin["price_change_percentage_24h"]) %>
             </td>
-            <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
-              <%= formatted_price(coin["market_cap"]) %>&nbsp;$
+            <td class="hidden px-2 py-2 text-center md:text-right md:table-cell lg:px-4 md:py-4">
+              <%= formatted_price(coin["market_cap"]) %>
             </td>
-            <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
-              <%= number_with_precision(coin["market_cap"].to_f/coin["fully_diluted_valuation"].to_f, precision: 2, strip_insignificant_zeros: true) unless coin["fully_diluted_valuation"].nil? %>
+            <td class="hidden px-2 py-2 text-center md:text-right md:table-cell lg:px-4 md:py-4">
+              <%= number_with_precision(presenter.fdv_mktcap_ratio, precision: 2, strip_insignificant_zeros: true) %>
             </td>
-            <td class="hidden px-2 py-2 text-right md:table-cell md:px-6 md:py-4">
-              <%= coin["last_updated"].to_datetime.in_time_zone.today? ? coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M") : coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M %d.%m.%Y") %>
+            <td class="hidden px-2 py-2 text-center md:text-right lg:table-cell lg:px-4 md:py-4">
+              <%= coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M") %>
             </td>
           </tr>
         <% end %>

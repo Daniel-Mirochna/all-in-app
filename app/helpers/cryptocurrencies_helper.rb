@@ -1,5 +1,16 @@
 module CryptocurrenciesHelper
   def formatted_price(number)
-    number_with_precision(sprintf("%.8f", number), precision: 10, strip_insignificant_zeros: true, delimiter: " ")
+    "$&thinsp;#{number_with_precision(format('%.8f', number), precision: 10, strip_insignificant_zeros: true, delimiter: ' ')}".html_safe
+  end
+
+  def formatted_number_precision_two(number)
+    number_with_precision(number, precision: 2, strip_insignificant_zeros: true)
+  end
+
+  def trimmed_link_to(link)
+    return unless link.length.positive?
+
+    link_to(link, link, target: "_blank",
+                        class: "w-[190px] block font-medium dark:text-purple-400 hover:underline text-ellipsis overflow-hidden")
   end
 end
