@@ -36,12 +36,12 @@ class UserFilesUploader < CarrierWave::Uploader::Base
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png bmp htm html js css scss rb erb txt doc docx odt ods pdf xls xlsx ppt pptx)
+    %w[jpg jpeg gif png bmp htm html js css scss rb erb txt doc docx odt ods pdf xls xlsx ppt pptx]
   end
 
   # Validate the size of a single file
   def size_range
-    1.byte..10.megabytes
+    (1.byte)..(10.megabytes)
   end
 
   # Override the filename of the uploaded files:

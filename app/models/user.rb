@@ -7,13 +7,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def check_total_uploads_size
-    total_size = self.user_files.map(&:size).sum
-    max_size = 1073741824 # 1 GB
-    total_size.to_f / max_size.to_f
+    total_size = user_files.map(&:size).sum
+    max_size = 1_073_741_824 # 1 GB
+    total_size.to_f / max_size
   end
 
   private
+
   def validate_total_size
-    errors.add(:base, "Total size of all files cannot exceed 1 GB") if self.check_total_uploads_size >= 1
+    errors.add(:base, "Total size of all files cannot exceed 1 GB") if check_total_uploads_size >= 1
   end
 end

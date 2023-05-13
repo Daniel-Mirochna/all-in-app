@@ -13,6 +13,6 @@ module UserUploadsHelper
   end
 
   def print_filename(file)
-    file.file.basename.gsub(/__.*/,"")
+    file.file.basename.gsub(/__.*/, "")
   end
 end
