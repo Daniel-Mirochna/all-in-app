@@ -6,11 +6,11 @@
   <% end %>
   <div class="flex md:order-2">
     <% if user_signed_in? %>
-      <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "hidden sm:block bg-purple-700 rounded sm:bg-transparent sm:px-3 sm:py-2 sm:font-medium text-sm md:dark:text-white hover:underline" %>
-      <%= link_to "Edit account", edit_user_registration_path, class: "hidden sm:block bg-purple-700 rounded sm:bg-transparent sm:px-3 sm:py-2 sm:font-medium text-sm md:dark:text-white hover:underline #{ 'md:dark:text-purple-400' if request.path == edit_user_registration_path }" %>
+      <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "hidden sm:block bg-purple-700 rounded sm:bg-transparent sm:px-3 sm:py-2 sm:font-medium text-sm md:dark:hover:text-purple-400" %>
+      <%= link_to "Edit account", edit_user_registration_path, class: "hidden sm:block bg-purple-700 rounded sm:bg-transparent sm:px-3 sm:py-2 sm:font-medium text-sm md:dark:hover:text-purple-400 #{ active_nav_link(edit_user_registration_path) }" %>
     <% else %>
       <%= link_to "Get started", new_user_registration_path, class: "hidden sm:block focus:ring-2 focus:outline-none focus:ring-lime-800 font-medium rounded-full text-sm px-4 py-2 text-center mr-3 md:mr-0 bg-purple-700 hover:bg-purple-800" %>
-      <%= link_to "Log in", new_user_session_path, class: "hidden sm:block bg-purple-700 rounded sm:bg-transparent sm:px-3 sm:py-2 sm:font-medium text-sm md:dark:text-white hover:underline #{ 'md:dark:text-purple-400' if request.path == new_user_session_path }" %>
+      <%= link_to "Log in", new_user_session_path, class: "hidden sm:block bg-purple-700 rounded sm:bg-transparent sm:px-3 sm:py-2 sm:font-medium text-sm md:dark:hover:text-purple-400 #{ active_nav_link(new_user_session_path) }" %>
     <% end %>
     <button data-collapse-toggle="navbar-sticky" onclick="document.getElementById('navbar-sticky').classList.toggle('hidden')" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
       <span class="sr-only">Open main menu</span>
@@ -20,27 +20,27 @@
   <div class="items-center justify-between hidden w-full md:flex md:w-auto" id="navbar-sticky">
     <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
       <li>
-        <%= link_to "Home", root_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ 'md:dark:text-purple-400' if request.path == root_path }" %>
+        <%= link_to "Home", root_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ active_nav_link(root_path) }" %>
       </li>
       <li>
-        <%= link_to "Uploads", users_uploads_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ 'md:dark:text-purple-400' if request.path == users_uploads_path }" %>
+        <%= link_to "Uploads", users_uploads_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ active_nav_link(users_uploads_path) }" %>
       </li>
       <li>
-        <%= link_to "Crypto Dashboard", cryptocurrencies_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400" %>
+        <%= link_to "Crypto Dashboard", cryptocurrencies_path, class: "block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ active_nav_link(cryptocurrencies_path) }" %>
       </li>
       <% if user_signed_in? %>
       <li>
         <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "sm:hidden block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400" %>
       </li>
       <li>
-        <%= link_to "Edit account", edit_user_registration_path, class: "sm:hidden block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400" %>
+        <%= link_to "Edit account", edit_user_registration_path, class: "sm:hidden block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ active_nav_link(edit_user_registration_path) }" %>
       </li>
       <% else %>
       <li>
-        <%= link_to "Get started", new_user_registration_path, class: "sm:hidden block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400" %>
+        <%= link_to "Get started", new_user_registration_path, class: "sm:hidden block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ active_nav_link(new_user_registration_path) }" %>
       </li>
       <li>
-        <%= link_to "Log in", new_user_session_path, class: "sm:hidden block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400" %>
+        <%= link_to "Log in", new_user_session_path, class: "sm:hidden block py-2 pl-3 pr-4 rounded md:p-0 md:dark:hover:text-purple-400 #{ active_nav_link(new_user_session_path) }" %>
       </li>
       <% end %>
     </ul>
