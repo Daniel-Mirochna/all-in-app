@@ -1,23 +1,12 @@
+<% presenter = UserUploadPresenter.new(file) %>
 <div class="relative justify-self-center" id="fileGridElement_<%= index %>">
-  <% if file_extensions.include? file.file.extension.downcase %>
-    <%= link_to users_upload_path(index), data: { turbo_frame: "modal" }, class: "flex flex-col items-center" do %>
-      <%= image_tag(file.thumb.url, alt: print_filename(file), class: "rounded-lg aspect-1 object-cover object-center hover:object-scale-down hover:cursor-zoom-in") %>
-      <span class="whitespace-nowrap text-center inline-block w-32 overflow-hidden text-ellipsis pt-1"><%= print_filename(file) %></span>
-    <% end %>
-    <%= link_to file.url, download: print_filename(file), title: "Download", class: "p-1 absolute top-0 right-0 drop-shadow-md rounded-full bg-slate-800/60 hover:bg-sky-500/60" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-      </svg>
-    <% end %>
-  <% else %>
-    <%= link_to users_upload_path(index), data: { turbo_frame: "modal" }, class: "flex flex-col items-center" do %>
-      <%= image_tag("_blank.png", alt: print_filename(file), class: "rounded-lg aspect-1 object-cover object-center hover:object-scale-down hover:cursor-zoom-in") %>
-      <span class="whitespace-nowrap text-center inline-block w-32 overflow-hidden text-ellipsis pt-1"><%= print_filename(file) %></span>
-    <% end %>
-    <%= link_to file.url, download: print_filename(file), title: "Download", class: "p-1 absolute top-0 right-0 drop-shadow-md rounded-full bg-slate-800/60 hover:bg-sky-500/60" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-      </svg>
-    <% end %>
+  <%= link_to users_upload_path(index), data: { turbo_frame: "modal" }, class: "flex flex-col items-center" do %>
+    <%= image_tag(presenter.thumbnail_by_extension, alt: print_filename(file), class: "rounded-lg aspect-1 object-cover object-center hover:object-scale-down hover:cursor-zoom-in") %>
+    <span class="whitespace-nowrap text-center inline-block w-32 overflow-hidden text-ellipsis pt-1"><%= print_filename(file) %></span>
+  <% end %>
+  <%= link_to file.url, download: print_filename(file), title: "Download", class: "p-1 absolute top-0 right-0 drop-shadow-md rounded-full bg-slate-800/60 hover:bg-sky-500/60" do %>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+    </svg>
   <% end %>
 </div>

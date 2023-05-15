@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "modal" do %>
+  <% presenter = UserUploadPresenter.new(@file) %>
   <!-- Main modal -->
   <div id="defaultModal" data-modal-target="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex justify-center items-center">
     <div class="relative w-full max-w-2xl max-h-full">
@@ -16,7 +17,7 @@
         </div>
         <!-- Modal body -->
         <div class="p-6 space-y-6">
-          <p class="text-base mb-10 leading-relaxed text-gray-500 dark:text-gray-400">
+          <p class="text-base mb-10 leading-relaxed dark:text-slate-200">
             <%= link_to @file.url, download: print_filename(@file), class: "dark:hover:text-purple-400 float-right" do %>
             <span class="align-middle">Download</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline align-middle w-5 h-5">
@@ -24,11 +25,10 @@
             </svg>
             <% end %>
           </p>
-          <% if file_extensions.include? @file.file.extension.downcase %>
-            <%= image_tag(@file.url, alt: print_filename(@file), class: "rounded-lg mx-auto max-h-96 lg:max-h-[60vh]") %>
-          <% else %>
-            <%= image_tag("_blank.png", alt: print_filename(@file), class: "rounded-lg aspect-1 object-cover object-center hover:object-scale-down hover:cursor-zoom-in") %>
-          <% end %>
+            <%= image_tag(presenter.image_by_extension, alt: print_filename(@file), class: "rounded-lg mx-auto max-h-96 lg:max-h-[60vh]") %>
+          <p class="text-base mb-10 leading-relaxed dark:text-slate-100">
+            Size: <%= (@file.size.to_f / (1024 * 1024)).round(2) %>&thinsp;MB <br>
+          </p>
         </div>
         <!-- Modal footer -->
         <div class="flex justify-between items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">

@@ -1,18 +1,13 @@
 module UserUploadsHelper
-  FILE_EXTENSIONS_TYPES = {
-    picture: %w[jpg jpeg png gif bmp],
-    document: %w[doc docx odt txt],
-    pdf: %w[pdf],
-    spreadsheet: %w[xls xlsx ods],
-    presentation: %w[ppt pptx],
-    programming: %w[htm html js css scss rb erb]
-  }.freeze
-
-  def file_extensions(type = :picture)
-    FILE_EXTENSIONS_TYPES[type]
-  end
-
   def print_filename(file)
     file.file.basename.gsub(/__.*/, "")
+  end
+
+  def storage_space_used_percentage
+    "#{(current_user.check_total_uploads_size.round(2) * 100).to_i}%"
+  end
+
+  def storage_space_left_megabytes
+    "#{(1000 - (current_user.check_total_uploads_size.round(4) * 1000)).to_i} MB"
   end
 end

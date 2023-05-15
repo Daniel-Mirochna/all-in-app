@@ -1,7 +1,7 @@
 <div class="flex justify-between mb-1">
-  <span class="text-base font-medium text-purple-700 dark:text-white">Used <%= "#{(current_user.check_total_uploads_size.round(2)*100).to_i}%" %> of 1&nbsp;GB storage space</span>
-  <span class="text-sm font-medium text-purple-700 dark:text-white text-right"><%= 1000-(current_user.check_total_uploads_size.round(4)*1000).to_i %>&nbsp;MB left</span>
+  <span class="text-base font-medium text-purple-700 dark:text-white">Used <%= storage_space_used_percentage %> of 1&nbsp;GB storage space</span>
+  <span class="text-sm font-medium text-purple-700 dark:text-white text-right"><%= storage_space_left_megabytes %> left</span>
 </div>
 <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-  <div class="bg-purple-600 h-2.5 rounded-full" style="width: <%= (current_user.check_total_uploads_size.round(2)*100).to_i %>%"></div>
+  <div class="bg-purple-600 h-2.5 rounded-full" style="width: <%= storage_space_used_percentage %>;"></div>
 </div>
