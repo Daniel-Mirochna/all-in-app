@@ -8,8 +8,8 @@ module CoinGeckoApiService
     HTTParty.get("#{URI}/ping")
   end
 
-  def self.coins_list(vs_currency = "usd", order = "market_cap_desc", page = "1")
-    params = { vs_currency:, order:, page: }
+  def self.coins_list(vs_currency = "usd", page = "1", order = "market_cap_desc")
+    params = { vs_currency:, page:, order: }
     HTTParty.get("#{URI}/coins/markets", query: params)
   end
 
