@@ -1,58 +1,40 @@
 <div class='w-full md:flex md:justify-center' data-controller="cryptocurrencies" data-turbo-cache="false">
   <div class="relative">
-    <div class="flex items-center justify-between py-3">
-    <div>
-      <select data-action="change->cryptocurrencies#setCookieAndReloadData" data-cryptocurrencies-target="select" class="block py-2 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-white dark:border-purple-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-        <option class="bg-slate-950" selected><%= cookies[:currency] %></option>
-        <% Cryptocurrency::CURRENCY_SYMBOLS.each do |k,v| %>
-          <option class="bg-slate-950" value="<%= k %>"><%= k %> <%= v %></option>
-        <% end %>
-      </select>
+    <div class="flex flex-wrap sm:flex-nowrap items-center justify-between py-3 gap-4 gap-y-8">
+      <div>
+        <select data-action="change->cryptocurrencies#setCookieAndReloadData" data-cryptocurrencies-target="select" class="block py-2 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-white dark:border-purple-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+          <option class="bg-slate-950" selected><%= cookies[:currency] %></option>
+          <% Cryptocurrency::CURRENCY_SYMBOLS.each do |k,v| %>
+            <option class="bg-slate-950" value="<%= k %>"><%= k %> <%= v %></option>
+          <% end %>
+        </select>
+      </div>
+      <span class="sm:order-2">Powered by <a href="https://www.coingecko.com/" target="_blank" class="font-medium dark:text-purple-400 hover:underline">CoinGecko</a></span>
+      <div class="inline-flex sm:order-1 justify-center rounded-md shadow-sm w-full sm:w-min" role="group">
+        <button type="button" data-action="click->cryptocurrencies#prevPage" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-slate-950 dark:border-purple-600 dark:text-white dark:hover:text-white dark:hover:bg-purple-800 dark:focus:text-white">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+          <span class="sr-only">Previous page</span>
+        </button>
+        <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-slate-950 dark:border-purple-600 dark:text-white dark:hover:text-white dark:hover:bg-purple-800 dark:focus:text-white">
+          <span data-cryptocurrencies-target="pageNumber">1</span>
+        </button>
+        <button type="button" data-action="click->cryptocurrencies#nextPage" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-slate-950 dark:border-purple-600 dark:text-white dark:hover:text-white dark:hover:bg-purple-800 dark:focus:text-white">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+          <span class="sr-only">Next page</span>
+        </button>
+        <%#= button_to coins_list_path, method: :get do %>
+        <%# end %>
+      </div>
     </div>
-    <span>Powered by <a href="https://www.coingecko.com/" target="_blank" class="font-medium dark:text-purple-400 hover:underline">CoinGecko</a></span>
-    </div>
-    <%= turbo_frame_tag "coins_list", src: coins_list_path do %>
+    <%= turbo_frame_tag "coins_list", src: coins_list_path(page: 1) do %>
       <table class="w-full text-md text-left text-gray-500 dark:text-slate-200 glassmorphism">
         <%= render partial: "coins_list_table_head" %>
       </table>
-      <div role="status" class="w-full p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
-          <div class="flex items-center justify-between">
-              <div>
-                  <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-                  <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-              </div>
-              <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-          </div>
-          <div class="flex items-center justify-between pt-4">
-              <div>
-                  <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-                  <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-              </div>
-              <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-          </div>
-          <div class="flex items-center justify-between pt-4">
-              <div>
-                  <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-                  <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-              </div>
-              <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-          </div>
-          <div class="flex items-center justify-between pt-4">
-              <div>
-                  <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-                  <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-              </div>
-              <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-          </div>
-          <div class="flex items-center justify-between pt-4">
-              <div>
-                  <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-                  <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-              </div>
-              <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-          </div>
-          <span class="sr-only">Loading...</span>
-      </div>
+      <%= render partial: "shared/list_placeholder" %>
     <% end %>
   </div>
 </div>
