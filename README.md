@@ -37,5 +37,4 @@ To open the container terminal:
 
 3. Crypto Dashboard
 - More specific tests
-- Filtering results
 - Paginate results ( offload API )
