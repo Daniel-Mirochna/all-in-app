@@ -9,6 +9,33 @@ export default class extends Controller {
     console.log("Hello, Cryptocurrencies controller!")
   }
 
+  // sorting mechanism from https://stackoverflow.com/a/49041392
+  getCellValue = (tr, idx) =>
+    tr.children[idx].getAttribute("data-value") || tr.children[idx].innerText || tr.children[idx].textContent
+
+  tableComparer = (idx, asc) => (a, b) => ((v1, v2) =>
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(this.getCellValue(asc ? a : b, idx), this.getCellValue(asc ? b : a, idx))
+
+  clearOrderClasses(thElement) {
+    document.querySelectorAll(".order-asc").forEach(e => e.classList.remove("order-asc"))
+    document.querySelectorAll(".order-desc").forEach(e => e.classList.remove("order-desc"))
+
+    const orderClass = this.asc ? "order-asc" : "order-desc"
+    thElement.classList.add(orderClass)
+  }
+
+  sortTable(e) {
+    const thElement = e.target
+    const tbody = thElement.closest('table').querySelector("tbody")
+
+    Array.from(tbody.querySelectorAll('tr:nth-child(n+1)'))
+      .sort(this.tableComparer(Array.from(thElement.parentNode.children).indexOf(thElement), this.asc = !this.asc))
+      .forEach(tr => tbody.appendChild(tr))
+
+    this.clearOrderClasses(thElement)
+  }
+
   setCookieAndReloadData(e) {
     const selectedCurrency = e.target.value
     const currentCurrencyCookie = this.getCookie("currency")

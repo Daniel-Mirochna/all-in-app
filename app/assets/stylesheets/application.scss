@@ -49,3 +49,23 @@ a{
     // backdrop-filter: blur(8px);
     // -webkit-backdrop-filter: blur(8px);
 }
+
+@mixin order-pseudo-elements {
+    display: inline-block;
+    width: 12px;
+}
+
+.ordered-th::after {
+    content: '\21C5';
+    @include order-pseudo-elements();
+}
+
+.order-asc::after {
+    content: '\25B2';
+    @include order-pseudo-elements();
+}
+
+.order-desc::after {
+    content: '\25BC';
+    @include order-pseudo-elements();
+}
