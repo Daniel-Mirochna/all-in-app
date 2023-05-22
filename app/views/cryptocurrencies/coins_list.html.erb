@@ -5,9 +5,9 @@
     <% @data.each do |coin| %>
       <% presenter = CryptocurrencyPresenter.new(coin) %>
       <tr class="hover:bg-gray-50 dark:hover:bg-purple-800">
-        <th scope="row" class="px-1 py-2 lg:px-4 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" data-value="<%= coin['market_cap_rank'] %>">
+        <td scope="row" class="px-1 py-2 lg:px-4 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" data-value="<%= coin['market_cap_rank'] %>">
           <%= coin['market_cap_rank'] %>
-        </th>
+        </td>
         <td class="px-2 py-2 lg:px-4 md:py-4" data-value="<%= coin['name'] %>">
           <%= link_to cryptocurrency_path(coin_id: coin['id']), data: { turbo_frame: "modal" }, class: "flex items-center gap-1 flex-col md:flex-row" do %>
             <%= image_tag(coin['image'], class: "w-5 h-5", alt: coin['symbol'], loading: :lazy) rescue nil %>
