@@ -36,12 +36,13 @@ export default class extends Controller {
     Turbo.setConfirmMethod((message, element) => {
       targetEl.querySelector("h3").textContent = message
       let elementId = `fileGridElement_${element.action.split('/').slice(-1)}`
-      this.confirm.textContent = "Delete file"
+      this.confirm.textContent = "Delete"
 
       modal.show()
       return new Promise((resolve) => {
         this.confirm.addEventListener("click", () => {
-          document.getElementById(elementId).innerHTML = "<div class='flex justify-center items-center h-full'><div class=\'lds-roller\'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>"
+          if (document.getElementById(elementId) !== null)
+            document.getElementById(elementId).innerHTML = "<div class='flex justify-center items-center h-full'><div class=\'lds-roller\'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>"
           resolve(true)
         }, { once: true})
       })

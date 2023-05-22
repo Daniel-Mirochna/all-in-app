@@ -38,8 +38,8 @@
       </div>
     <% end %>
 
-    <div>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "inline text-red-500" %></div>
+    <div>Unhappy? <%= link_to "Delete my account", registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: "Are you sure? All your data will be lost (including uploaded files)." }, class: "inline text-red-500" %></div>
 
-    <%= link_to "Back", :back, class: "hover:underline" %>
+    <%= link_to "Back", :back, class: "hover:underline text-purple-400" %>
   </div>
 </div>
