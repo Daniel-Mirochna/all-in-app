@@ -15,10 +15,13 @@ class CryptocurrencyPresenter
 
   def price_change_percentage(number)
     return "-" if number.nil?
+
     if number.positive?
-      "<span class='relative price-change-up' style='display: inline-block; color: rgb(101 163 13); font-weight: 500;'>#{number.round(2)}&thinsp;%</span>".html_safe
+      "<span class='relative price-change-up' style='display: inline-block; color: rgb(101 163 13); font-weight: 500;'>
+      #{number.round(2)}&thinsp;%</span>".html_safe
     else
-      "<span class='relative price-change-down' style='display: inline-block; color: rgb(220 38 38); font-weight: 500;'>#{number.round(2).to_s.gsub('-', '')}&thinsp;%</span>".html_safe
+      "<span class='relative price-change-down' style='display: inline-block; color: rgb(220 38 38); font-weight: 500;'>
+      #{number.round(2).to_s.gsub('-', '')}&thinsp;%</span>".html_safe
     end
   end
 end
