@@ -69,3 +69,17 @@ a{
     content: '\25BC';
     @include order-pseudo-elements();
 }
+
+.price-change-up::before {
+    content: '\25B2';
+    position: absolute;
+    left: -14px;
+    bottom: 1px;
+}
+
+.price-change-down::before {
+    content: '\25BC';
+    position: absolute;
+    left: -14px;
+    bottom: 1px;
+}
