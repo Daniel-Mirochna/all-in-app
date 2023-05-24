@@ -1,12 +1,21 @@
 import { Controller } from "@hotwired/stimulus"
 
+window.pageTimer = 0;
 // Connects to data-controller="cryptocurrencies"
 export default class extends Controller {
   static targets = [ "pageNumber" ]
-  currentPage = 1
+
+  initialize() {
+    this.currentPage = 1
+    this.timeout = null
+  }
 
   connect() {
     console.log("Hello, Cryptocurrencies controller!")
+  }
+
+  disconnect() {
+    clearTimeout(this.timeout)
   }
 
   // sorting mechanism from https://stackoverflow.com/a/49041392
@@ -59,11 +68,27 @@ export default class extends Controller {
   }
 
   nextPage() {
-    this.currentPage < 38 ? this.reloadCoinsList(this.currentPage += 1) : alert("You've reached data end.")
+    if (this.currentPage < 38) {
+      clearTimeout(this.timeout)
+      this.currentPage += 1
+      this.pageNumberTarget.textContent = this.currentPage
+      this.timeout = setTimeout(() => {
+        this.reloadCoinsList(this.currentPage)
+      }, 750)
+    } else {
+      alert("You've reached data end.")
+    }
   }
 
   prevPage() {
-    this.currentPage > 1 ? this.reloadCoinsList(this.currentPage -= 1) : alert("You've reached data end.")
+    if (this.currentPage > 1) {
+      clearTimeout(this.timeout)
+      this.currentPage -= 1
+      this.pageNumberTarget.textContent = this.currentPage
+      this.timeout = setTimeout(() => {
+        this.reloadCoinsList(this.currentPage)
+      }, 750)
+    }
   }
 
   reloadCoinsList(page) {
@@ -80,6 +105,5 @@ export default class extends Controller {
       </td>
       </tr>`
     }
-    this.pageNumberTarget.textContent = page
   }
 }
