@@ -9,6 +9,7 @@ class CryptocurrenciesController < ApplicationController
   end
 
   def show
+    @currency = cookies[:currency]
     @data = CoinGeckoApiService.coin_info(params[:coin_id])
   end
 
