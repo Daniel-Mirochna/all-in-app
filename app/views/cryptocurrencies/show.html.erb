@@ -12,7 +12,7 @@
               <%= image_tag(@data["image"]["small"], alt: "Coin logo", class: "inline w-10 h-10 align-middle") %>
             </div>
             <div>
-              <%= @data["name"] %>&thinsp;<span class="text-slate-400"><%= @data["symbol"].upcase %></span>
+              <%= presenter.simple_name %>&thinsp;<span class="text-slate-400"><%= presenter.simple_symbol %></span>
             </div>
             <div class="text-3xl">
               <%= formatted_price(@data["market_data"]["current_price"][cookies[:currency]]) %>
