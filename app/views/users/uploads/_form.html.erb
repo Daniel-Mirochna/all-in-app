@@ -1,10 +1,10 @@
-<%= form_with(model: user, url: users_upload_path(user), data: { users__uploads_target: "form" }, local: true) do |f| %>
+<%= form_with(model: user, url: users_upload_path(user), data: { users__uploads_target: "form", action: "users--uploads#beforeUpload" }, local: true) do |f| %>
   <div class="field mt-3">
     <% user.user_files.each do |file| %>
       <%= hidden_field :user, :user_files, multiple: true, value: file.file.identifier %>
     <% end %>
     <%= f.label :user_files, id: "myCustomFileInput", hidden: true %>
-    <%= f.file_field :user_files, multiple: true, class: "mt-1 bg-slate-950 rounded", hidden: true, data: { users__uploads_target: "fileInput", action: "input->users--uploads#fileInputOnChange" } %>
+    <%= f.file_field :user_files, multiple: true, class: "mt-1 bg-slate-950 rounded", hidden: true, data: { turbo_cache: "false", users__uploads_target: "fileInput", action: "input->users--uploads#fileInputOnChange" } %>
     <%= content_tag(:div, "Drag & drop your files here.<br> You can also click this field to select files manually.".html_safe,
       data: {
         action: "
@@ -21,12 +21,12 @@
 
   <div class="flex items-center gap-3">
     <div class="actions my-5">
-      <%= f.submit "Upload", data: { action: "users--uploads#beforeUpload" }, class: "rounded-full py-2 px-4 bg-purple-700 hover:bg-purple-800 hover:cursor-pointer" %>
+      <%= f.submit "Upload", class: "rounded-full py-2 px-4 bg-purple-700 hover:bg-purple-800 hover:cursor-pointer" %>
     </div>
-    <div class="">
+    <div class="" data-turbo-cache="false">
       <%= content_tag(:div, "Files to be uploaded: 0", data: {users__uploads_target: "fileCounter"}, class: "my-5" )%>
     </div>
   </div>
-  <div class="" data-users--uploads-target="fileList">
+  <div class="" data-turbo-cache="false" data-users--uploads-target="fileList">
   </div>
 <% end %>
