@@ -10,6 +10,10 @@ export default class extends Controller {
 
   connect() {
     console.log("Hello, Uploads Controller!")
+    addEventListener("turbo:submit-end", () => {
+      this.currentInputFileList.items.clear()
+      this.handleFileInputState()}
+    )
   }
 
   get form() {
