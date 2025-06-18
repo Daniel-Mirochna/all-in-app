@@ -1,4 +1,5 @@
 # README
+Created at the beggining of my journey in Ruby on Rails.
 
 Developed using Rails 7, Hotwire's Turbo & Stimulus technology, Devise, Carrierwave,
 Tailwind, Flowbite and many more. Cryptocurrency data provided by CoinGecko API.
