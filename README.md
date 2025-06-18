@@ -1,7 +1,5 @@
 # README
 
-Live demo: https://sleyt.usermd.net/
-
 Developed using Rails 7, Hotwire's Turbo & Stimulus technology, Devise, Carrierwave,
 Tailwind, Flowbite and many more. Cryptocurrency data provided by CoinGecko API.
 
