@@ -15,7 +15,7 @@ module CryptocurrenciesHelper
   end
 
   def trimmed_link_to(link)
-    return unless link.length.positive?
+    return unless link
 
     link_to(link, link, target: "_blank",
                         class: "w-[190px] block font-medium dark:text-purple-400 hover:underline text-ellipsis overflow-hidden")
