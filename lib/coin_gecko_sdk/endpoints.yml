@@ -1,0 +1,50 @@
+coin_gecko_api:
+  base_url: "https://api.coingecko.com/api/v3"
+
+  endpoints:
+    ping:
+      path: "/ping"
+      method: "GET"
+      description: "Check API server status"
+      cache:
+        enabled: false
+        key: "ping"
+        duration: 0
+
+    coins_markets:
+      path: "/coins/markets"
+      method: "GET"
+      description: "Get list of coins with market data"
+      cache:
+        enabled: true
+        key: "coins_markets"
+        duration: 15 # minutes
+      required_params:
+        - vs_currency
+      optional_params:
+        - page
+        - order
+        - per_page
+        - ids
+        - category
+        - price_change_percentage
+        - locale
+        - precision
+
+    coin_info:
+      path: "/coins/{id}"
+      method: "GET"
+      description: "Get current data for a coin"
+      cache:
+        enabled: true
+        key: "coin_info"
+        duration: 15 # minutes
+      required_params:
+        - id
+      optional_params:
+        - localization
+        - tickers
+        - market_data
+        - community_data
+        - developer_data
+        - sparkline

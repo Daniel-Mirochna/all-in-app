@@ -20,5 +20,6 @@ module AllInApp
     #
     config.time_zone = "Warsaw"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths << Rails.root.join("lib")
   end
 end
