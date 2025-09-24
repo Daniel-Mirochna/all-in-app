@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Tests & Security
     runs-on: ubuntu-latest
 
     services:
@@ -33,7 +34,13 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.4.6"
-          bundler-cache: true # runs 'bundle install' and caches gems automatically
+          bundler-cache: true
+
+      - name: Add Linux platform to Gemfile.lock
+        run: bundle lock --add-platform x86_64-linux
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
 
       - name: Set up database
         env:
@@ -56,6 +63,7 @@ jobs:
         run: bundle exec rspec
 
   lint:
+    name: Code Quality Check
     runs-on: ubuntu-latest
 
     steps:
@@ -67,6 +75,9 @@ jobs:
         with:
           ruby-version: "3.4.6"
           bundler-cache: true
+
+      - name: Add Linux platform to Gemfile.lock
+        run: bundle lock --add-platform x86_64-linux
 
       - name: Run RuboCop (lint only)
         run: bundle exec rubocop --format github
