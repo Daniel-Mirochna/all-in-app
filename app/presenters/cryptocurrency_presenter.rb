@@ -6,35 +6,35 @@ class CryptocurrencyPresenter
   end
 
   def simple_id
-    coin['id']
+    coin["id"]
   end
 
   def simple_rank
-    coin['market_cap_rank']
+    coin["market_cap_rank"]
   end
 
   def simple_symbol
-    coin['symbol'].upcase
+    coin["symbol"].upcase
   end
 
   def simple_name
-    coin['name']
+    coin["name"]
   end
 
   def simple_icon
-    coin['image']
+    coin["image"]
   end
 
   def simple_price
-    coin['current_price']
+    coin["current_price"]
   end
 
   def simple_price_change_percentage_24h
-    coin['price_change_percentage_24h']
+    coin["price_change_percentage_24h"]
   end
 
   def simple_market_cap
-    coin['market_cap']
+    coin["market_cap"]
   end
 
   def simple_fdv
@@ -42,7 +42,7 @@ class CryptocurrencyPresenter
   end
 
   def simple_last_updated
-    coin['last_updated'].to_datetime.in_time_zone.strftime("%H:%M")
+    coin["last_updated"].to_datetime.in_time_zone.strftime("%H:%M")
   end
 
   def fdv_mktcap_ratio

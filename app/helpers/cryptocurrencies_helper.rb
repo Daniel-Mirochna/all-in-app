@@ -1,12 +1,12 @@
 module CryptocurrenciesHelper
   def formatted_price(number)
     currency = cookies[:currency]
-    unless number.nil? || number == "-"
+    if number.nil? || number == "-"
+      "-"
+    else
       "#{Cryptocurrency::CURRENCY_SYMBOLS[currency]}&thinsp;#{
         number_with_precision(format('%.8f', number), precision: 10, strip_insignificant_zeros: true, delimiter: ' ')
       }".html_safe
-    else
-      "-"
     end
   end
 

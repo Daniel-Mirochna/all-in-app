@@ -2,7 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0'
+gem "rails", "~> 7.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -11,7 +11,7 @@ gem "sprockets-rails"
 gem "sqlite3", "~> 2.7"
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.6'
+gem "pg", "~> 1.6"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 7.0"
@@ -29,9 +29,9 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Devise for authentication
-gem 'devise', '~> 4'
+gem "devise", "~> 4"
 
-#Use Redis adapter to run Action Cable in production
+# Use Redis adapter to run Action Cable in production
 gem "redis", "~> 5.4"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -47,7 +47,7 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 # Tailwind CSS library
-gem 'tailwindcss-rails', '~> 4.3'
+gem "tailwindcss-rails", "~> 4.3"
 
 # Use Sass to process CSS
 gem "sassc-rails"
@@ -56,23 +56,24 @@ gem "sassc-rails"
 gem "font-awesome-sass", "~> 6"
 
 # Carrierwave for files upload
-gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+gem "carrierwave", ">= 3.0.0.beta", "< 4.0"
 
 # Store session data in db to avoid ActionDispatch::Cookies::CookieOverflow error
-gem 'activerecord-session_store'
+gem "activerecord-session_store"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 # Fetch data from APIs [https://github.com/jnunemaker/httparty]
-gem 'httparty', '~> 0.23.1'
+gem "httparty", "~> 0.23.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'brakeman', '~> 7.1'
+  gem "brakeman", "~> 7.1"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem 'rspec-rails', '~> 8.0'
-  gem 'rubocop'
+  gem "rspec-rails", "~> 8.0"
+  gem "rubocop"
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do

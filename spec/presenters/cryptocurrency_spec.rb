@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe CryptocurrencyPresenter do
-  let(:presenter) { CryptocurrencyPresenter.new(JSON.parse(File.read("spec/support/fixtures/coin_gecko_api/coins_list.json")).first ) }
+  let(:presenter) { CryptocurrencyPresenter.new(JSON.parse(File.read("spec/support/fixtures/coin_gecko_api/coins_list.json")).first) }
 
   context 'fdv_mktcap_ratio' do
     it 'returns hyphen for nil or zero simple_fdv' do

@@ -4,7 +4,7 @@ class CryptocurrenciesController < ApplicationController
   def index; end
 
   def coins_list
-    page = params[:page].to_i || 1
+    page = params[:page].to_i
     @data = CoinGeckoApiService.coins_list(cookies[:currency], page)
   end
 

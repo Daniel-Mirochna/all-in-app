@@ -11,14 +11,14 @@ module AllInApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.session_store :active_record_store,
-                         :key => '_all_in_app_session'
+                         key: "_all_in_app_session"
 
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    config.time_zone = 'Warsaw'
+    config.time_zone = "Warsaw"
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
