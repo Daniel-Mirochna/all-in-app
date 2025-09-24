@@ -12,7 +12,7 @@ services:
     stdin_open: true
     tty: true
     entrypoint: entrypoint.sh
-    command: ['./bin/dev'] #optionally ['rails','s','-p','3000','-b','0.0.0.0']
+    command: ["./bin/dev"] #optionally ['rails','s','-p','3000','-b','0.0.0.0']
     environment:
       RAILS_ENV: development
       DB_HOST: db
@@ -23,7 +23,7 @@ services:
       - db
 
   db:
-    image: postgres:15.2-alpine
+    image: postgres:17
     container_name: all_in_app_database
     ports:
       - "5432:5432"
