@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-alpine3.17
+FROM ruby:3.4.6-slim
 
 ENV APP_PATH /var/app
 ENV BUNDLE_VERSION 2.4.11
@@ -15,20 +15,20 @@ COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh #&& chmod +x /usr/local/bin/test-entrypoint.sh
 
 # install dependencies for application
-RUN apk -U add --no-cache \
-build-base \
+RUN apt-get update && apt-get install -y \
+build-essential \
 git \
-postgresql-dev \
+libpq-dev \
 postgresql-client \
 libxml2-dev \
-libxslt-dev \
+libxslt1-dev \
+libyaml-dev \
 nodejs \
 npm \
-yarn \
 imagemagick \
-tzdata \
-sassc \
-&& rm -rf /var/cache/apk/* \
+libvips \
+&& npm install -g yarn \
+&& rm -rf /var/lib/apt/lists/* \
 && mkdir -p $APP_PATH
 
 

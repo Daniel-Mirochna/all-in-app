@@ -1,0 +1,16 @@
+@layer base {
+  /* Your base styles go here */
+}
+
+@layer components {
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    background-color: rgb(191 219 254);
+  }
+}
+
+@layer utilities {
+  /* Your utility classes go here */
+}
+
+/* Your custom styles */
