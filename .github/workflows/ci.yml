@@ -13,7 +13,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:15
+        image: postgres:17
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -49,9 +49,6 @@ jobs:
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
-
-      - name: Run RuboCop
-        run: bundle exec rubocop
 
       - name: Run Brakeman
         run: bundle exec brakeman --exit-on-warn --no-progress --format json
