@@ -47,7 +47,7 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 # Tailwind CSS library
-gem 'tailwindcss-rails', '~> 2.0'
+gem 'tailwindcss-rails', '~> 4.3'
 
 # Use Sass to process CSS
 gem "sassc-rails"
