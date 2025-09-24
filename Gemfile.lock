@@ -180,7 +180,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.8)
+    nio4r (2.7.4)
     nokogiri (1.18.10-x64-mingw-ucrt)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-musl)
@@ -198,7 +198,7 @@ GEM
       date
       stringio
     public_suffix (5.0.1)
-    puma (6.2.1)
+    puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.17)
@@ -366,7 +366,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   pg (~> 1.6)
-  puma (~> 6.0)
+  puma (~> 6.4)
   rails (~> 7.0)
   redis (~> 5.4)
   rspec-rails (~> 6.0)
