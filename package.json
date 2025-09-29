@@ -9,7 +9,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^8.0.16",
-    "caniuse-lite": "^1.0.30001743",
+    "caniuse-lite": "^1.0.30001745",
     "esbuild": "^0.25.10",
     "flowbite": "^3.1.2",
     "stimulus": "^3.2.2"
